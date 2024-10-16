@@ -27,14 +27,14 @@ const Content = (props) => {
   // console.log(props);
   return(
     <>
-    <Subject part={props.part1} exercise= {props.exercises1} />
-    <Subject part={props.part2} exercise= {props.exercises2} />
-    <Subject part={props.part3} exercise= {props.exercises3} />
+    <Part part={props.part1} exercise= {props.exercises1} />
+    <Part part={props.part2} exercise= {props.exercises2} />
+    <Part part={props.part3} exercise= {props.exercises3} />
     </>
   )
 }
 
-const Subject = (props) => {
+const Part = (props) => {
   console.log(props.part,props.exercise);
   return(
     <p> {props.part} {props.exercise} </p>
