@@ -59,22 +59,35 @@ const Statistics = ({text,goodCounter,neutralCounter,badCounter,totalCounter}) =
   };
 
   const calculatePositivePercentage = () => {
-    return totalCounter === 0 ? 0 : (goodCounter / totalCounter) * 100;
+    return totalCounter === 0 ? '0%' : ((goodCounter / totalCounter) * 100)+'%';
   };
+  
 
   return(
   <div>
   <h1> {text} </h1>
 
-  <p style={{ margin: 0 }}> good {goodCounter} </p>
-  <p style={{ margin: 0 }}> neutral {neutralCounter} </p>
+  <StatisticLine counterName={goodCounter} text ='good'/>
+  <StatisticLine counterName={neutralCounter} text ='neutral'/>
+  <StatisticLine counterName={badCounter} text ='bad'/>
+  <StatisticLine counterName={totalCounter} text ='all'/>
+  <StatisticLine counterName={calculateAverage()} text ='average'/>
+  <StatisticLine counterName={calculatePositivePercentage()} text ='positive'/>
+  {/* <p style={{ margin: 0 }}> good {goodCounter} </p> */}
+  {/* <p style={{ margin: 0 }}> neutral {neutralCounter} </p>
   <p style={{ margin: 0 }}> bad {badCounter}</p>
   <p style={{ margin: 0 }}> all {totalCounter}</p>
   <p style={{ margin: 0 }}> average {calculateAverage()}</p>
-  <p style={{ margin: 0 }}> positive {calculatePositivePercentage()}%</p>
+  <p style={{ margin: 0 }}> positive {calculatePositivePercentage()}%</p> */}
 </div>
   )
 
 }
 
+const StatisticLine = ({counterName,text}) => {
+  console.log(counterName);
+  return (
+    <p style={{ margin: 0 }}> {text} {counterName} </p>
+  )
+}
 export default App
