@@ -25,13 +25,7 @@ const App = () => {
     averageSetter(averageCounter-1);
   }
 
-  const calculateAverage = () => {
-    return totalCounter === 0 ? 0 : (goodCounter - badCounter) / totalCounter;
-  };
-
-  const calculatePositivePercentage = () => {
-    return totalCounter === 0 ? 0 : (goodCounter / totalCounter) * 100;
-  };
+  
 
   console.log(goodCounter);
 
@@ -43,7 +37,28 @@ const App = () => {
     <button onClick={badclicker}> bad </button>
 
 
-    <h1> statistics</h1>
+  <Statistics text="statistics" goodCounter={goodCounter} neutralCounter={neutralCounter} badCounter={badCounter} totalCounter={totalCounter}/>
+
+
+
+    </div>
+    
+  )
+}
+
+const Statistics = ({text,goodCounter,neutralCounter,badCounter,totalCounter}) => {
+  console.log(text);
+  const calculateAverage = () => {
+    return totalCounter === 0 ? 0 : (goodCounter - badCounter) / totalCounter;
+  };
+
+  const calculatePositivePercentage = () => {
+    return totalCounter === 0 ? 0 : (goodCounter / totalCounter) * 100;
+  };
+
+  return(
+  <div>
+  <h1> {text} </h1>
 
   <p style={{ margin: 0 }}> good {goodCounter} </p>
   <p style={{ margin: 0 }}> neutral {neutralCounter} </p>
@@ -51,12 +66,9 @@ const App = () => {
   <p style={{ margin: 0 }}> all {totalCounter}</p>
   <p style={{ margin: 0 }}> average {calculateAverage()}</p>
   <p style={{ margin: 0 }}> positive {calculatePositivePercentage()}%</p>
-
-
-
-    </div>
-    
+</div>
   )
+
 }
 
 export default App
