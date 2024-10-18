@@ -67,12 +67,14 @@ const Statistics = ({text,goodCounter,neutralCounter,badCounter,totalCounter}) =
   <div>
   <h1> {text} </h1>
 
+  <table>
   <StatisticLine counterName={goodCounter} text ='good'/>
   <StatisticLine counterName={neutralCounter} text ='neutral'/>
   <StatisticLine counterName={badCounter} text ='bad'/>
   <StatisticLine counterName={totalCounter} text ='all'/>
   <StatisticLine counterName={calculateAverage()} text ='average'/>
   <StatisticLine counterName={calculatePositivePercentage()} text ='positive'/>
+  </table>
   {/* <p style={{ margin: 0 }}> good {goodCounter} </p> */}
   {/* <p style={{ margin: 0 }}> neutral {neutralCounter} </p>
   <p style={{ margin: 0 }}> bad {badCounter}</p>
@@ -87,7 +89,10 @@ const Statistics = ({text,goodCounter,neutralCounter,badCounter,totalCounter}) =
 const StatisticLine = ({counterName,text}) => {
   console.log(counterName);
   return (
-    <p style={{ margin: 0 }}> {text} {counterName} </p>
+    <tr>
+    <td> {text} </td>
+    <td> {counterName} </td>
+    </tr>
   )
 }
 export default App
