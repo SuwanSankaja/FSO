@@ -5,29 +5,24 @@ const App = () => {
   const [neutralCounter,neutralSetter] = useState(0)
   const [badCounter,badSetter] = useState(0)
   const [totalCounter,totalSetter] = useState(0)
-  const [averageCounter,averageSetter] = useState(0)
+
 
   const goodclicker = () => {
     goodSetter(goodCounter+1);
     totalSetter(totalCounter+1);
-    averageSetter(averageCounter+1);
+
   }
 
   const neutralclicker = () => {
     neutralSetter(neutralCounter+1);
     totalSetter(totalCounter+1);
-    averageSetter(averageCounter);
+
   }
 
   const badclicker = () => {
     badSetter(badCounter+1);
     totalSetter(totalCounter+1);
-    averageSetter(averageCounter-1);
   }
-
-  
-
-  console.log(goodCounter);
 
   return(
     <div>
@@ -35,16 +30,27 @@ const App = () => {
     <button onClick={goodclicker}> good </button>
     <button onClick={neutralclicker}> neutral </button>
     <button onClick={badclicker}> bad </button>
+    <StatsOutput text="statistics" goodCounter={goodCounter} neutralCounter={neutralCounter} badCounter={badCounter} totalCounter={totalCounter}/>
 
-
-  <Statistics text="statistics" goodCounter={goodCounter} neutralCounter={neutralCounter} badCounter={badCounter} totalCounter={totalCounter}/>
-
-
-
-    </div>
-    
-  )
+    </div>)
 }
+
+
+const StatsOutput = ({text,goodCounter,neutralCounter,badCounter,totalCounter}) =>{
+    if (totalCounter===0){
+      return(
+       <div>
+      <h1> {text} </h1>
+      <p> No feedback given</p>
+      </div>
+      )
+    }
+    else{
+      return(
+      <Statistics text="statistics" goodCounter={goodCounter} neutralCounter={neutralCounter} badCounter={badCounter} totalCounter={totalCounter}/>
+      )
+    }
+    }
 
 const Statistics = ({text,goodCounter,neutralCounter,badCounter,totalCounter}) => {
   console.log(text);
