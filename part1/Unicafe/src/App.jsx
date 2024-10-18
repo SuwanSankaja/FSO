@@ -4,21 +4,34 @@ const App = () => {
   const [goodCounter,goodSetter] = useState(0);
   const [neutralCounter,neutralSetter] = useState(0)
   const [badCounter,badSetter] = useState(0)
+  const [totalCounter,totalSetter] = useState(0)
+  const [averageCounter,averageSetter] = useState(0)
 
   const goodclicker = () => {
-    const setter = goodSetter (goodCounter+1);
-    return (setter);
+    goodSetter(goodCounter+1);
+    totalSetter(totalCounter+1);
+    averageSetter(averageCounter+1);
   }
 
   const neutralclicker = () => {
-    const setter = neutralSetter (neutralCounter+1);
-    return (setter);
+    neutralSetter(neutralCounter+1);
+    totalSetter(totalCounter+1);
+    averageSetter(averageCounter);
   }
 
   const badclicker = () => {
-    const setter = badSetter (badCounter+1);
-    return (setter);
+    badSetter(badCounter+1);
+    totalSetter(totalCounter+1);
+    averageSetter(averageCounter-1);
   }
+
+  const calculateAverage = () => {
+    return totalCounter === 0 ? 0 : (goodCounter - badCounter) / totalCounter;
+  };
+
+  const calculatePositivePercentage = () => {
+    return totalCounter === 0 ? 0 : (goodCounter / totalCounter) * 100;
+  };
 
   console.log(goodCounter);
 
@@ -35,6 +48,10 @@ const App = () => {
   <p style={{ margin: 0 }}> good {goodCounter} </p>
   <p style={{ margin: 0 }}> neutral {neutralCounter} </p>
   <p style={{ margin: 0 }}> bad {badCounter}</p>
+  <p style={{ margin: 0 }}> all {totalCounter}</p>
+  <p style={{ margin: 0 }}> average {calculateAverage()}</p>
+  <p style={{ margin: 0 }}> positive {calculatePositivePercentage()}%</p>
+
 
 
     </div>
