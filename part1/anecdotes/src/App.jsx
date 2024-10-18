@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+// part 1 completed
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
