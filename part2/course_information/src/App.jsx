@@ -57,7 +57,7 @@ const Header = (props) => {
 
 const Content = (props) => {
   // console.log(props.parts);
-  console.log(props.parts[0].id)
+  // console.log(props.parts[0].id)
   return(
     <>
     {/* <Part name={props.parts[0].name} exercise= {props.parts[0].exercises} />
@@ -81,9 +81,15 @@ const Part = (props) => {
 }
 
 const Total = (props) => {
-  // console.log(props);
+  console.log(props.parts[0].exercises);
   // console.log(props[0])
+  // (props.parts.map(part) => (part.exercises))
+  const exercisesArray = props.parts.map((part) => part.exercises);
+  console.log(exercisesArray);
+
+  const total = exercisesArray.reduce((s,p) => s+p);
+  console.log(total);
   return(
-    <p><b> total of {props.parts[0].exercises+props.parts[1].exercises+props.parts[2].exercises+props.parts[3].exercises} exercises </b> </p>
+    <p><b> total of {total} exercises </b> </p>
   )
 }
