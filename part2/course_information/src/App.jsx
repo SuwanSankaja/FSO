@@ -17,6 +17,11 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3
+      },
+      {
+        name: 'Redux',
+        exercises: 11,
+        id: 4
       }
     ]
   }
@@ -31,36 +36,54 @@ const App = () => {
 export default App
 
 const Course = (props) => {
+  // console.log(props.course.name);
+  // console.log(props.course.parts)
+  const headername =props.course.name
+  const parts = props.course.parts
   return (
     <div>
-    <Header header={props.course.name} />
-    <Content props={props} />
+    <Header header={headername} />
+    <Content parts={parts} />
     </div>
   );
 }
 
 const Header = (props) => {
-  // console.log(props);
+  // console.log(props.header);
   return (
     <h1>{props.header}</h1>
   )
 }
 
 const Content = (props) => {
-  console.log(props.props.course.parts[0]);
+  // console.log(props.parts);
+  console.log(props.parts[0].id)
   return(
     <>
-    <Part name={props.props.course.parts[0].name} exercise= {props.props.course.parts[0].exercises} />
-    <Part name={props.props.course.parts[1].name} exercise= {props.props.course.parts[1].exercises} />
-    <Part name={props.props.course.parts[2].name} exercise= {props.props.course.parts[2].exercises} />
+    {/* <Part name={props.parts[0].name} exercise= {props.parts[0].exercises} />
+    <Part name={props.parts[1].name} exercise= {props.parts[1].exercises} />
+    <Part name={props.parts[2].name} exercise= {props.parts[2].exercises} /> */}
+
+    {props.parts.map((part) => (
+            <Part key={part.id} name={part.name} exercise={part.exercises} />
+          ))}
+    <Total parts={props.parts}/>
     </>
   )
 }
 
 const Part = (props) => {
-  console.log(props.name,props.exercise);
+  // console.log(props.name,props.exercise);
   return(
     <p> {props.name} {props.exercise} </p>
   )
  
+}
+
+const Total = (props) => {
+  // console.log(props);
+  // console.log(props[0])
+  return(
+    <p><b> total of {props.parts[0].exercises+props.parts[1].exercises+props.parts[2].exercises+props.parts[3].exercises} exercises </b> </p>
+  )
 }
